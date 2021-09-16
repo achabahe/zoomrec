@@ -336,7 +336,7 @@ def join(meet_id, meet_pw, duration, description):
             REC_PATH, time.strftime(TIME_FORMAT)) + "-" + description + "-JOIN.mkv"
 
         command = "ffmpeg -nostats -loglevel quiet -f pulse -ac 2 -i 1 -f x11grab -r 30 -s " + resolution + " -i " + \
-                  disp + " -acodec pcm_s16le -vcodec libx264rgb -preset ultrafast -crf 0 -threads 0 -async 1 -vsync 1 " + filename
+                  disp + " -acodec pcm_s16le -vcodec libx264 -preset slow -crf 23 -threads 0 -async 1 -vsync 1 " + filename
 
         ffmpeg_debug = subprocess.Popen(
             command, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
@@ -657,7 +657,7 @@ def join(meet_id, meet_pw, duration, description):
     disp = os.getenv('DISPLAY')
 
     command = "ffmpeg -nostats -loglevel error -f pulse -ac 2 -i 1 -f x11grab -r 30 -s " + resolution + " -i " + \
-              disp + " -acodec pcm_s16le -vcodec libx264rgb -preset ultrafast -crf 0 -threads 0 -async 1 -vsync 1 " + filename
+              disp + " -acodec pcm_s16le -vcodec libx264 -preset slow -crf 23 -threads 0 -async 1 -vsync 1 " + filename
 
     ffmpeg = subprocess.Popen(
         command, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)

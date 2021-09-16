@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
 
 ENV HOME=/home/zoomrec \
-    TZ=Europe/Berlin \
-    TERM=xfce4-terminal \
+    TZ=Europe/Paris \
+    TERM=xterm-256color \
     START_DIR=/start \
     DEBIAN_FRONTEND=noninteractive \
     VNC_RESOLUTION=1024x576 \
@@ -128,6 +128,7 @@ ADD res/img ${HOME}/img
 USER 0
 RUN chmod a+x ${START_DIR}/entrypoint.sh && \
     chmod -R a+rw ${START_DIR} && \
+    mkdir ${HOME}/recordings && \
     chown -R zoomrec:zoomrec ${HOME} && \
     find ${HOME}/ -name '*.sh' -exec chmod -v a+x {} + && \
     find ${HOME}/ -name '*.desktop' -exec chmod -v a+x {} +

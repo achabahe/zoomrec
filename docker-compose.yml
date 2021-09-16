@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  zoomrec:
+    build: ./
+    restart: always
+    container_name: zoomrec
+    volumes:
+     - ./example/meetings.csv:/home/zoomrec/meetings.csv
+     - ./recordings/:/home/zoomrec/recordings
+    ports:
+      - "5901:5901"
